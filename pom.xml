@@ -117,6 +117,26 @@
 
 	<profiles>
 		<profile>
+			<id>scala-2.9.0</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<scala.version>2.9.0</scala.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>scala-2.10.1</id>
+			<activation>
+				<property>
+					<name>scala-2.10.1</name>
+				</property>
+			</activation>
+			<properties>
+				<scala.version>2.10.1</scala.version>
+			</properties>
+		</profile>
+		<profile>
 			<!--
 				This profile uses the proguard plugin to reduce the size of the
 				output jar. It is usefull when combined with nodeps profile which
@@ -237,6 +257,14 @@
 						<exclude>org/graphstream/ui/j2dviewer/renderer/test/**</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<configuration>
+							<classifier>${scala.version}</classifier>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -290,7 +318,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<scalaVersion>2.9</scalaVersion>
+					<scalaVersion>${scala.version}</scalaVersion>
 				</configuration>
 			</plugin>
 
@@ -334,7 +362,7 @@
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>2.9.0</version>
+			<version>${scala.version}</version>
 			<optional>false</optional>
 		</dependency>
 	</dependencies>
